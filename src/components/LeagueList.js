@@ -37,7 +37,6 @@ function LeagueList()
 
     useEffect(() =>
     {
-        if (videoGame!='all')
         fetchData(pageNumber,5,videoGame);
     }, [videoGame])
 

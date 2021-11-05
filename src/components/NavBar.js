@@ -10,7 +10,19 @@ function Bar(props) {
   };
 */
 
-  const [dropDownValue, setDropDownValue] = useState("All Games");
+
+  const dropDownValues= {
+    'all' : 'All Games',
+    'csgo':"CS-GO",
+    "codmw":"Call Of Duty",
+    "dota2":"Dota2",
+    "lol" : "League Of Legends",
+    "pubg" :"Pubg",
+    "ow" : "Overwatch"
+ 
+  }
+
+  const [dropDownValue, setDropDownValue] = useState("all");
 
   const changeValue = (event) => {
     props.setGameVideo(event.target.parentNode.id);
@@ -21,7 +33,7 @@ function Bar(props) {
   useEffect(()=>{
     const data = localStorage.getItem("videoGame")
     if(data){
-      setDropDownValue(JSON.parse(data))
+      setDropDownValue(dropDownValues[JSON.parse(data)])
     }
 }, []);
 
