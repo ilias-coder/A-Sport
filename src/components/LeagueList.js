@@ -1,11 +1,12 @@
 import { CircularProgress, List, Pagination} from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react';
-import { fetchTeams } from '../app/TeamsAPI.js';
-import Item from './TeamsItem';
+import { fetchLeagues } from '../app/leaguesAPI.js';
+import Item from './LeagueItem';
 import {Context} from "../Context.js"
 
-function TeamsList()
+function LeagueList()
 {   
+
     let videoGame = useContext(Context);
 
     const [list, setList] = useState([]);
@@ -16,22 +17,26 @@ function TeamsList()
     async function fetchData(page = 1, perpage = 5, game = "all")
     {
         setLoading(true);
-        const data = await fetchTeams(page, perpage, game);
+        console.log(game)
+        const data = await fetchLeagues(page, perpage, game);
 
-        console.log(data.headers.get('x-total'))
         console.log(data.json)
+        console.log(data.headers.get('x-total'))
+        
 
+        //console.log(data.headers)
         setNumber(data.headers.get('x-total'))
 
 
-        //si fetchTeams terminé
+        //si fetchLeague terminé
         setList(data.json);
         setLoading(false);
     }
 
     useEffect(() =>
     {
-        fetchData(pageNumber);
+        console.log(videoGame)
+        fetchData(pageNumber,5,videoGame);
     }, [pageNumber])
 
     useEffect(() =>
@@ -40,11 +45,14 @@ function TeamsList()
         fetchData(pageNumber,5,videoGame);
     }, [videoGame])
 
+
+
+
     const handlePage = (event, value) => {
         //setLoading(true);
         //setPageNumber(parseInt(event.target.innerText));
         setPageNumber(value);
-        //const data = await fetchTeams(value,5);
+        //const data = await fetchLeagues(value,5);
         /*//setList(data.json);
         //setLoading(false);
         */
@@ -61,7 +69,7 @@ function TeamsList()
     {
         content = 
                 <div>
-                <h2> Teams </h2>
+                <h2> Leagues </h2>
                 <List>
                     {
                         list.map((el) => (
@@ -76,11 +84,11 @@ function TeamsList()
        
     }
     return (
-        <div className="Team-list">
+        <div className="League-list">
             {content}
         </div>
         
     );
 }
 
-export default TeamsList;
+export default LeagueList;
