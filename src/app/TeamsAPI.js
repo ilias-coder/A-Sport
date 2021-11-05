@@ -19,7 +19,7 @@ export const fetchTeams = async (page = 1, per_page = 5, game = "all") =>
 
     else {
         const response = await fetch(
-            "https://api.pandascore.co/"  + game + "/teams"  + '?page='+page+'&per_page='+per_page,
+            process.env.REACT_APP_API + game + "/teams"  + '?page='+page+'&per_page='+per_page,
             {
                 mode : 'cors',
                 method : 'GET',
