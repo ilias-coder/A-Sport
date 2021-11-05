@@ -17,14 +17,11 @@ function LeagueList()
     async function fetchData(page = 1, perpage = 5, game = "all")
     {
         setLoading(true);
-        console.log(game)
         const data = await fetchLeagues(page, perpage, game);
 
-        console.log(data.json)
         console.log(data.headers.get('x-total'))
         
 
-        //console.log(data.headers)
         setNumber(data.headers.get('x-total'))
 
 
@@ -35,13 +32,12 @@ function LeagueList()
 
     useEffect(() =>
     {
-        console.log(videoGame)
         fetchData(pageNumber,5,videoGame);
     }, [pageNumber])
 
     useEffect(() =>
     {
-        console.log(videoGame)
+        if (videoGame!='all')
         fetchData(pageNumber,5,videoGame);
     }, [videoGame])
 

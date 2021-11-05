@@ -24,7 +24,7 @@ function App() {
 
   useEffect(()=>{
     localStorage.setItem("videoGame", JSON.stringify(gameVideo))
-});
+}, [gameVideo]);
 
 
   return (

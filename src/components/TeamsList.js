@@ -17,11 +17,11 @@ function TeamsList()
     {
         setLoading(true);
         const data = await fetchTeams(page, perpage, game);
-
-        console.log(data.headers.get('x-total'))
+        console.log()
+        console.log(data.headers.get('X-total'))
         console.log(data.json)
 
-        setNumber(data.headers.get('x-total'))
+        setNumber(data.headers.get('X-total'))
 
 
         //si fetchTeams terminé
@@ -37,6 +37,7 @@ function TeamsList()
     useEffect(() =>
     {
         console.log(videoGame)
+        if (videoGame!='all')
         fetchData(pageNumber,5,videoGame);
     }, [videoGame])
 

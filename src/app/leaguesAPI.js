@@ -1,7 +1,6 @@
 export const fetchLeagues = async (page = 1, per_page = 5, game = "all") =>
 {
 
-    console.log("hna")
     if(game=='all')
     {
         const response = await fetch(
@@ -16,8 +15,6 @@ export const fetchLeagues = async (page = 1, per_page = 5, game = "all") =>
         }
     )
 
-    console.log("hna")
-    console.log(response)
     const json = await response.json();
     return {json: json, headers: response.headers};}
 
@@ -37,8 +34,6 @@ export const fetchLeagues = async (page = 1, per_page = 5, game = "all") =>
     
         //console.log("hna")
         const json = await response.json();
-        console.log(response)
-        console.log(response.headers.get("x-total")   )
         return {json: json, headers: response.headers};
     }
 
